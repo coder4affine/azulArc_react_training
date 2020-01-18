@@ -11,6 +11,11 @@ function setup() {
   return { wrapper, props };
 }
 
+test('Should render TodoFooter correctly', () => {
+  const { wrapper } = setup();
+  expect(wrapper).toMatchSnapshot();
+});
+
 describe('test TodoFooter Component', () => {
   it('check div exist', () => {
     const { wrapper } = setup();
@@ -32,7 +37,7 @@ describe('test TodoFooter Component', () => {
     expect(button.length).toBe(3);
     expect(button.at(0).text()).toEqual('All Todos');
     expect(button.at(1).text()).toEqual('Pending Todos');
-    expect(button.at(2).text()).toEqual('Completed Todos');
+    expect(button.at(2).text()).toEqual('Completed Todoss');
   });
 
   it('check click event working', () => {

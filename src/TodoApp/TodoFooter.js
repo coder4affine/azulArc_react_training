@@ -12,7 +12,7 @@ const TodoFooter = ({ switchList }) => {
         Pending Todos
       </button>
       <button type="button" onClick={() => switchList('completed')}>
-        Completed Todos
+        Completed Todoss
       </button>
     </div>
   );
