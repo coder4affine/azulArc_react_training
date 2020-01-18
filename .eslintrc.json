@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parser": "babel-eslint",
   "extends": [
@@ -29,6 +30,7 @@
   "rules": {
     "react/static-property-placement": 0,
     "react/state-in-constructor": 0,
+    "react/jsx-props-no-spreading": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "babel/new-cap": 1,
