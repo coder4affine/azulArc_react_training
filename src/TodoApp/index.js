@@ -47,21 +47,38 @@ export default class index extends PureComponent {
     }
   };
 
-  onChecked = item => {
-    const { todoList } = this.state;
-    const i = todoList.findIndex(x => x.id === item.id);
-    const newTodoList = [
-      ...todoList.slice(0, i),
-      { ...item, isDone: !item.isDone },
-      ...todoList.slice(i + 1),
-    ];
-    this.setState({ todoList: newTodoList });
+  onChecked = async item => {
+    try {
+      const res = await fetch(`${url}/${item.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ ...item, isDone: !item.isDone }),
+        headers: {
+          'Content-Type': 'application/json',
+          accept: 'application/json',
+        },
+      });
+      const todoItem = await res.json();
+
+      const { todoList } = this.state;
+      const i = todoList.findIndex(x => x.id === item.id);
+      const newTodoList = [...todoList.slice(0, i), todoItem, ...todoList.slice(i + 1)];
+      this.setState({ todoList: newTodoList });
+    } catch (error) {
+      this.setState({ error });
+    }
   };
 
-  onDelete = item => {
-    const { todoList } = this.state;
-    const newTodoList = todoList.filter(x => x.id !== item.id);
-    this.setState({ todoList: newTodoList });
+  onDelete = async item => {
+    try {
+      await fetch(`${url}/${item.id}`, {
+        method: 'DELETE',
+      });
+      const { todoList } = this.state;
+      const newTodoList = todoList.filter(x => x.id !== item.id);
+      this.setState({ todoList: newTodoList });
+    } catch (error) {
+      this.setState({ error });
+    }
   };
 
   switchList = status => {
