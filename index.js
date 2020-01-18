@@ -637,3 +637,36 @@ for (const iterator of gen) {
 // console.log(gen.next())
 // console.log(gen.next())
 // console.log(gen.next())
+
+const arr = [
+  {
+    name: "yagnesh",
+    age: 30
+  },
+  {
+    name: "rohit",
+    age: 32
+  },
+  {
+    name: "radhika",
+    age: 24
+  },
+  {
+    name: "advik",
+    age: 8
+  }
+];
+
+// {
+//     "0-9": [],
+//     "20-29":[],
+//     "30-39":[]
+// }
+
+const groupByAge = arr.reduce((p, c) => {
+  const key = parseInt(c.age / 10);
+  (p[`${key}0-${key}9`] = p[`${key}0-${key}9`] || []).push(c);
+  return p;
+}, {});
+
+console.log(groupByAge);
