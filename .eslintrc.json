@@ -27,6 +27,8 @@
   },
   "plugins": ["babel", "react", "import", "jsx-a11y", "react-hooks", "prettier"],
   "rules": {
+    "react/static-property-placement": 0,
+    "react/state-in-constructor": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "babel/new-cap": 1,

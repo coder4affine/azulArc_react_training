@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './src/main';
+import TodoApp from './src/TodoApp';
 
-ReactDOM.render(
-  <Main text="hello world" caption="Good Morning" applyStyle />,
-  document.getElementById('root'),
-);
+ReactDOM.render(<TodoApp />, document.getElementById('root'));
