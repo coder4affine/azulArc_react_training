@@ -29,6 +29,7 @@ export class TodoForm extends PureComponent {
   };
 
   render() {
+    console.log('TodoForm');
     const { todo, error } = this.state;
     return (
       <form onSubmit={this.addTodo}>

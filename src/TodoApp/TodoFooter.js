@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const TodoFooter = () => {
+  console.log('TodoFooter');
   return (
     <div>
       <button type="button">All Todos</button>
@@ -10,4 +11,4 @@ const TodoFooter = () => {
   );
 };
 
-export default TodoFooter;
+export default memo(TodoFooter);

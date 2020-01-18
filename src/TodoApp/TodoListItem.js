@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
-const TodoListItem = ({ item, onChecked }) => {
+const TodoListItem = ({ item, onChecked, onDelete }) => {
+  console.log('TodoListItem');
   return (
     <div>
       <input type="checkbox" checked={item.isDone} onChange={() => onChecked(item)} />
@@ -12,7 +13,9 @@ const TodoListItem = ({ item, onChecked }) => {
       >
         {item.text}
       </span>
-      <button type="button">Delete</button>
+      <button type="button" onClick={() => onDelete(item)}>
+        Delete
+      </button>
     </div>
   );
 };
@@ -24,6 +27,7 @@ TodoListItem.propTypes = {
     isDone: PropTypes.bool.isRequired,
   }).isRequired,
   onChecked: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
-export default TodoListItem;
+export default memo(TodoListItem);

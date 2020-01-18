@@ -26,13 +26,23 @@ export default class index extends PureComponent {
     this.setState({ todoList: newTodoList });
   };
 
+  onDelete = item => {
+    const { todoList } = this.state;
+    const newTodoList = todoList.filter(x => x.id !== item.id);
+    this.setState({ todoList: newTodoList });
+  };
+
   render() {
+    console.log('index');
     const { todoList } = this.state;
     return (
       <div>
         <h1>Todo Application</h1>
+        <button type="button" onClick={this.changeUser}>
+          Change User
+        </button>
         <TodoForm onAddTodo={this.onAddTodo} />
-        <TodoList todoList={todoList} onChecked={this.onChecked} />
+        <TodoList todoList={todoList} onChecked={this.onChecked} onDelete={this.onDelete} />
         <TodoFooter />
       </div>
     );

@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TodoListItem from './TodoListItem';
 
-const TodoList = ({ todoList, onChecked }) => {
+const TodoList = ({ todoList, onChecked, onDelete }) => {
+  console.log('TodoList');
   return (
     <div>
       <h1>Your todo will display here...</h1>
       {todoList.map(x => (
-        <TodoListItem key={x.id} item={x} onChecked={onChecked} />
+        <TodoListItem key={x.id} item={x} onChecked={onChecked} onDelete={onDelete} />
       ))}
     </div>
   );
@@ -21,6 +22,7 @@ TodoList.propTypes = {
     }),
   ).isRequired,
   onChecked: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default TodoList;
