@@ -1,8 +1,36 @@
-export const a = 1;
-export const b = 1;
-export const c = 1;
-export const d = 1;
+// class component
 
-const e = 1;
+// function component
 
-export default e;
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import './main.css';
+
+const containerStyle = `container label`;
+
+const Main = ({ text, caption, applyStyle }) => {
+  return (
+    <div>
+      <h1
+        style={{
+          backgroundColor: applyStyle ? 'yellow' : 'green',
+        }}
+        className={containerStyle}
+      >
+        Hello World
+      </h1>
+      <h1>{text}</h1>
+      <h4>{caption}</h4>
+      <input type="password" />
+    </div>
+  );
+};
+
+Main.propTypes = {
+  text: PropTypes.string.isRequired,
+  caption: PropTypes.number.isRequired,
+  applyStyle: PropTypes.bool.isRequired,
+};
+
+export default Main;
