@@ -1,6 +1,9 @@
 import React from 'react';
 import loadable from '@loadable/component';
 
+const AsyncLogin = loadable(() => import('./pages/Login'), {
+  fallback: <div>Loading...</div>,
+});
 const AsyncHome = loadable(() => import('./pages/Home'), {
   fallback: <div>Loading...</div>,
 });
@@ -15,6 +18,10 @@ const routes = [
   {
     path: '/',
     exact: true,
+    component: AsyncLogin,
+  },
+  {
+    path: '/home',
     component: AsyncHome,
   },
   {
