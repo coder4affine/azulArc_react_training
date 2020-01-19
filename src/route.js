@@ -14,6 +14,10 @@ const AsyncSettings = loadable(() => import('./pages/Settings'), {
   fallback: <div>Loading...</div>,
 });
 
+const AsyncProducts = loadable(() => import('./pages/Products'), {
+  fallback: <div>Loading...</div>,
+});
+
 const routes = [
   {
     path: '/',
@@ -23,6 +27,10 @@ const routes = [
   {
     path: '/home',
     component: AsyncHome,
+  },
+  {
+    path: '/products',
+    component: AsyncProducts,
   },
   {
     path: '/about',

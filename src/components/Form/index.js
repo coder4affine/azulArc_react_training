@@ -6,10 +6,11 @@ import Button from '@material-ui/core/Button';
 
 const index = ({ fields, ...props }) => {
   return (
-    <Formik {...props} initialValues={fields.reduce((p, c) => ({ ...p, [c.name]: c.value }), {})}>
-      {({ handleSubmit }) => {
+    <Formik initialValues={fields.reduce((p, c) => ({ ...p, [c.name]: c.value }), {})} {...props}>
+      {({ handleSubmit, isSubmitting, status }) => {
         return (
           <form onSubmit={handleSubmit}>
+            {status && status.serverError && <p>{status.serverError}</p>}
             <div
               style={{
                 display: 'flex',
@@ -21,8 +22,8 @@ const index = ({ fields, ...props }) => {
                 <Field key={x.name} {...x} />
               ))}
 
-              <Button type="submit" variant="contained" color="primary">
-                Login
+              <Button type="submit" variant="contained" color="primary" disable={isSubmitting}>
+                {isSubmitting ? 'Loading...' : 'Login'}
               </Button>
             </div>
           </form>

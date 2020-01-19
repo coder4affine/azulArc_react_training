@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import TextInput from '../components/TextInput';
 import Form from '../components/Form';
 
@@ -32,15 +34,40 @@ const fields = [
   },
 ];
 
-export default class Login extends PureComponent {
+class Login extends PureComponent {
+  static propTypes = {
+    changeLocale: PropTypes.func.isRequired,
+    locale: PropTypes.shape({
+      locale: PropTypes.string.isRequired,
+    }).isRequired,
+  };
+
   render() {
+    const { changeLocale, locale } = this.props;
     return (
-      <Form
-        fields={fields}
-        onSubmit={values => {
-          console.log(values);
-        }}
-      />
+      <div>
+        <Form
+          fields={fields}
+          onSubmit={() => {
+            changeLocale({ locale: 'es' });
+          }}
+        />
+        <p>{locale.locale}</p>
+      </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    locale: state.locale,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    changeLocale: payload => dispatch({ type: 'CHANGE_LOCALE', payload }),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
